@@ -1,1 +1,21 @@
+This is code for showing the number of pushed from 0 to 9 (because 1 digit 7 segment display)
+You can also view the count using the monitor of Serial output of 9600.
+Note: the code is for common adnode (+).
+The code for common catode will be different even though not too much.
+In common anode Led is On when pin output is LOW, and the pin is OFF when the pin output is HIGH.
+Do not forget to use 200-330 Om resistors on Leds and 10 kOm resistor on button. Be safe!
 
+
+Button desctiption.
+
+          pin 10 (Input)
+    |      |
+   ----------
+   |  \     |
+   |    \   |
+   ----------
+    |      |
+ VCC 5V     Resistor 10kOm connected to ground
+ The connection to the ground is needed to avoid the following problems:
+ - buzzing of the button;
+ - to make sure it does not any static and it is set to 0 when it does not any current (from 5v)
