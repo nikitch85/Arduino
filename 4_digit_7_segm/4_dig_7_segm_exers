@@ -1,0 +1,94 @@
+/*
+ * 
+ *The below code returns the number of button pushes and it is then displayed on 1 digit 7 segment display
+ *Everytime you push the button buttonPushCounter increments to one
+ *When you relese the button the last push button becomes LOW
+ *Next time you push and hold the button it will also increase to one
+ *
+ *  Note: This is for 1 digit 7 segment display with common anode(+)
+ *  The led is off when the output is HIGH and the led  is ON when the output is LOW.
+ *      
+ *      The following is the scematic of pin mapping.
+ *      6
+ *    -------
+ *  7 |     |
+ *    |  8  | 5
+ *    -------
+ *    |     |
+ *  2 |     | 4
+ *    -------
+ *        3   * 9
+ *     
+ */
+int DIG[4]={10,11,12,13};//The pins used to control the anode of the 4 bit,DIG1-DIG4.
+char Str[4] = {'2', '0', '1', '7'};//The number to be displayed.
+byte Digital[11]={0x03,0xCF,0X25,0X85,0XC9,0X91,0X11,0XC7,0X01,0X81,0XFE};//the character code for number 0-9 and a dot
+void setup()
+{
+  int i=2;
+  //Set D2-D13 as OUTPUT
+  for(i=2;i<10;i++)
+  {
+   pinMode(i,OUTPUT);
+   digitalWrite(i,HIGH);
+  }
+ int digi=10;
+ for(digi=10;digi<15;digi++)
+{
+     pinMode(digi,OUTPUT);
+   digitalWrite(digi,LOW); //turning off the digits from 10 to 13
+}
+}
+void loop()
+{
+
+ digitalWrite(DIG[0], HIGH);
+int i = 1;
+ int j;
+    for(j=0;j<8;j++)
+   {  
+    if(Digital[i]&1<<j)
+    digitalWrite(9-j,HIGH);
+    else
+    digitalWrite(9-j,LOW);
+    }
+    delay(5);
+    digitalWrite(DIG[0], LOW);
+digitalWrite(DIG[1], HIGH);
+i = 9;
+    for(j=0;j<8;j++)
+   {  
+    if(Digital[i]&1<<j)
+    digitalWrite(9-j,HIGH);
+    else
+    digitalWrite(9-j,LOW);
+    }
+    delay(5);
+    digitalWrite(DIG[1], LOW);
+digitalWrite(DIG[2], HIGH); //turning on 3rd digit
+i = 8;
+    for(j=0;j<8;j++)
+   {  
+    if(Digital[i]&1<<j)
+    digitalWrite(9-j,HIGH);
+    else
+    digitalWrite(9-j,LOW);
+    }
+    delay(5);
+    digitalWrite(DIG[2], LOW);
+digitalWrite(DIG[3], HIGH); //turning on 4th digit
+i = 7;
+    for(j=0;j<8;j++)
+   {  
+    if(Digital[i]&1<<j)
+    digitalWrite(9-j,HIGH);
+    else
+    digitalWrite(9-j,LOW);
+    }
+    delay(5);
+    digitalWrite(DIG[3], LOW);
+  
+
+
+   
+}
